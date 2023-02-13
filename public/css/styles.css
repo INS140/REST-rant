@@ -2,3 +2,11 @@ h1 {
     text-align: center;
     color: cornflowerblue;
 }
+
+.attribution {
+    position: absolute;
+    background-color: white;
+    left: 0;
+    bottom: 0;
+    font-size: 0.5rem;
+}

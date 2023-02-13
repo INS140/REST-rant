@@ -6,6 +6,12 @@ function Home() {
         <Def>
             <main>
                 <h1>HOME</h1>
+                <div style={{ position: 'relative' }}>
+                    <img src='/images/stir-fry.jpg' alt='stir-fry' width="500" />
+                    <div className='attribution'>
+                        Photo found on <a href='https://www.mccormick.com/recipes/salads-sides/stir-fry-vegetables'>McCormick website</a>
+                    </div>
+                </div>
                 <a href="/places">
                     <button className="btn btn-primary">Places Page</button>
                 </a>
