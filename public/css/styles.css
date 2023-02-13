@@ -3,6 +3,8 @@ h1 {
     color: cornflowerblue;
 }
 
+.img-container { position: relative; }
+
 .attribution {
     position: absolute;
     background-color: white;
@@ -10,3 +12,5 @@ h1 {
     bottom: 0;
     font-size: 0.5rem;
 }
+
+.restaurant-img { width: 90%; }
