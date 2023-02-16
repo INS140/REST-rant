@@ -4,11 +4,10 @@ body {
 }
 
 main {
-    margin-right: 20px;
-    margin-left: 20px;
+    margin: auto 20px;
+    padding: 12px;
     background-color: white;
 }
-  
 
 h1 {
     text-align: center;
@@ -40,7 +39,11 @@ nav a:hover {
     text-decoration: none;
 }
 
-.img-container { position: relative; }
+.img-container {
+    width: fit-content;
+    margin: auto;
+    position: relative;
+}
 
 .attribution {
     position: absolute;
@@ -50,4 +53,4 @@ nav a:hover {
     font-size: 0.5rem;
 }
 
-.restaurant-img { width: 90%; }
+.restaurant-img { max-width: 100%; }

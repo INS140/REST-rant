@@ -20,9 +20,16 @@ router.post('/', (req, res) => {
   res.redirect('/places')
 })
 
-
+// NEW
 router.get('/new', (req, res) => {
   res.render('places/new')
+})
+
+// SHOW
+router.get('/:id', (req, res) => {
+  (places[req.params.id])
+    ? res.render('places/show', { place: places[req.params.id] })
+    : res.status(404).render('Error404')
 })
 
 module.exports = router

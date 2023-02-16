@@ -7,7 +7,7 @@ function Home() {
             <main>
                 <h1>REST-Rant</h1>
                 <div className='img-container'>
-                    <img src='/images/stir-fry.jpg' alt='stir-fry' width="500" />
+                    <img src='/images/stir-fry.jpg' alt='stir-fry' className='restaurant-img' />
                     <div className='attribution'>
                         Photo found on <a href='https://www.mccormick.com/recipes/salads-sides/stir-fry-vegetables'>McCormick website</a>
                     </div>
