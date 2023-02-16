@@ -7,15 +7,10 @@ router.get('/', (req, res) => {
 
 // CREATE
 router.post('/', (req, res) => {
-  if (!req.body.pic) {
-    req.body.pic = '/images/default-restaurant.png'
-  }
-  if (!req.body.city) {
-    req.body.city = 'Anytown'
-  }
-  if (!req.body.state) {
-    req.body.state = 'USA'
-  }
+  if (!req.body.pic) req.body.pic = '/images/default-restaurant.png'
+  if (!req.body.city) req.body.city = 'Somewhere'
+  if (!req.body.state) req.body.state = 'USA'
+
   places.push(req.body)
   res.redirect('/places')
 })
@@ -44,6 +39,10 @@ router.delete('/:id', (req, res) => {
 
 // PUT
 router.put('/:id', (req, res) => {
+  if (!req.body.pic) req.body.pic = '/images/default-restaurant.png'
+  if (!req.body.city) req.body.city = 'Somewhere'
+  if (!req.body.state) req.body.state = 'USA'
+
   places[req.params.id] = req.body
   res.redirect(`/places/${req.params.id}`)
 })

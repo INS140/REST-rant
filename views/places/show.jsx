@@ -6,19 +6,23 @@ function Show ({ place, id }) {
         <Def>
           <main>
             <h1>{ place.name }</h1>
-            <div className='img-container'>
-                <img className="restaurant-img" src={place.pic} alt={place.name} />
-                <div className='attribution'>
-                    Image sourced from <a href={place.attr}>{place.source}</a>
+            {(place.pic !== '/images/default-restaurant.png')
+                ? <div className='img-container'>
+                    <img className="restaurant-img" src={place.pic} alt={place.name} />
+                    <div className='attribution'>
+                        Image sourced from <a href={place.attr}>{place.source}</a>
+                    </div>
                 </div>
-            </div>
+                : <img className="restaurant-img" src={place.pic} alt={place.name} />
+            }
             <div>
                 <h2>Rating</h2>
                 <p>no ratings yet ...</p>
             </div>
             <div>
                 <h2>Description</h2>
-                <p>Specialties: { place.cuisines }</p>
+                <p>Located in {place.city}, {place.state}</p>
+                <p>Specialties: {place.cuisines}</p>
             </div>
             <div>
                 <h2>Comments</h2>

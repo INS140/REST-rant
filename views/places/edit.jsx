@@ -20,6 +20,7 @@ function Edit({ place, id }) {
                         <div className="form-group">
                             <label htmlFor='state'>State </label>
                             <select className="form-control" id="state" name="state" defaultValue={place.state}>
+                                <option value="">---</option>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
                                 <option value="AZ">Arizona</option>
@@ -94,7 +95,7 @@ function Edit({ place, id }) {
                         </div>
                         <div className='form-group'>
                             <label htmlFor='attr'>Attribution URL Source </label>
-                            <input className='form-control' type='text' name='source' defaultValue={place.attr} />
+                            <input className='form-control' type='text' name='attr' defaultValue={place.attr} />
                         </div>
                     </fieldset>
                     <input type="submit" />
