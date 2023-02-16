@@ -42,9 +42,15 @@ router.delete('/:id', (req, res) => {
   }
 })
 
+// PUT
+router.put('/:id', (req, res) => {
+  places[req.params.id] = req.body
+  res.redirect(`/places/${req.params.id}`)
+})
+
 // EDIT
 router.get('/:id/edit', (req, res) => {
-  res.render('places/edit', { place: places[req.params.id] })
+  res.render('places/edit', { place: places[req.params.id], id: req.params.id })
 })
 
 module.exports = router

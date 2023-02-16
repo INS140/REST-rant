@@ -1,12 +1,12 @@
 const React = require('react')
 const Def = require('../default')
 
-function Edit({ place }) {
+function Edit({ place, id }) {
     return (
         <Def>
             <main>
                 <h2>Edit Restaurant</h2>
-                <form action="" method='POST'>
+                <form action={`/places/${id}?_method=PUT`} method='POST'>
                     <fieldset>
                         <legend>Restaurant Info</legend>
                         <div className="form-group">
