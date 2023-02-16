@@ -28,8 +28,23 @@ router.get('/new', (req, res) => {
 // SHOW
 router.get('/:id', (req, res) => {
   (places[req.params.id])
-    ? res.render('places/show', { place: places[req.params.id] })
+    ? res.render('places/show', { place: places[req.params.id], id: req.params.id })
     : res.status(404).render('Error404')
+})
+
+// DELETE
+router.delete('/:id', (req, res) => {
+  if (places[req.params.id]) {
+    places.splice(req.params.id, 1)
+    res.redirect('/places')
+  } else {
+    res.status(404).render('Error404')
+  }
+})
+
+// EDIT
+router.get('/:id/edit', (req, res) => {
+  res.render('places/edit', { place: places[req.params.id] })
 })
 
 module.exports = router
