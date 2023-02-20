@@ -18,7 +18,7 @@ function Index(props) {
                                     ? <div className='img-container'>
                                         <img className="restaurant-img" src={place.pic} alt={place.name} />
                                         <div className='attribution'>
-                                            Image sourced from <a href={place.attr}>{place.source}</a>
+                                            Image sourced from <a href={place.srcUrl}>{place.srcName}</a>
                                         </div>
                                     </div>
                                     : <img className="restaurant-img" src={place.pic} alt={place.name} />

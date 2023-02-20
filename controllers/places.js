@@ -1,18 +1,30 @@
 const router = require('express').Router()
-const places = require('../models/places.js')
+const db = require('../models')
 
 router.get('/', (req, res) => {
-    res.render('places/index', { places })
+    db.Place.find()
+      .then(places => res.render('places/index', { places }))
+      .catch(err => {
+        console.log(err)
+        res.status(404).render('error404')
+      })
 })
 
 // CREATE
 router.post('/', (req, res) => {
-  if (!req.body.pic) req.body.pic = '/images/default-restaurant.png'
-  if (!req.body.city) req.body.city = 'Somewhere'
-  if (!req.body.state) req.body.state = 'USA'
+  console.log(req.body, 'init')
+  if (!req.body.pic) req.body.pic = undefined
+  if (!req.body.city) req.body.city = undefined
+  if (!req.body.state) req.body.state = undefined
 
-  places.push(req.body)
-  res.redirect('/places')
+  console.log(req.body, 'before create')
+
+  db.Place.create(req.body)
+    .then(() => res.redirect('/places'))
+    .catch(err => {
+      console.log(err)
+      res.status(404).render('error404')
+    })
 })
 
 // NEW

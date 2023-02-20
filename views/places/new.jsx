@@ -12,10 +12,6 @@ function NewForm() {
                         <input className="form-control" id="name" name="name" required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="pic">Place Picture</label>
-                        <input className="form-control" id="pic" name="pic" />
-                    </div>
-                    <div className="form-group">
                         <label htmlFor="city">City</label>
                         <input className="form-control" id="city" name="city" />
                     </div>
@@ -81,9 +77,28 @@ function NewForm() {
                         </select>
                     </div>
                     <div className="form-group">
+                        <label htmlFor="founded">Founded Year</label>
+                        <input className="form-control" id="founded" name="founded" />
+                    </div>
+                    <div className="form-group">
                         <label htmlFor="cuisines">Cuisines</label>
                         <input className="form-control" id="cuisines" name="cuisines" required />
                     </div>
+                    <fieldset>
+                        <legend>Picture</legend>
+                        <div className="form-group">
+                            <label htmlFor="pic">Picture URL</label>
+                            <input className="form-control" id="pic" name="pic" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="srcName">Sourse Name</label>
+                            <input className="form-control" id="srcName" name="srcName" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="srcUrl">Source Website</label>
+                            <input className="form-control" id="srcUrl" name="srcUrl" />
+                        </div>
+                    </fieldset>
                     <input className="btn btn-primary" type="submit" value="Add Place" />
                 </form>
             </main>

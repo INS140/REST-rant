@@ -22,4 +22,4 @@ app.get('*', (req, res) => res.status(404).render('Error404'))
 
 
 // Server Listeners
-app.listen(process.env.PORT)
+app.listen(process.env.PORT, () => console.log('SERVER CONNECTED'))
