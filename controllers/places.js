@@ -12,12 +12,9 @@ router.get('/', (req, res) => {
 
 // CREATE
 router.post('/', (req, res) => {
-  console.log(req.body, 'init')
   if (!req.body.pic) req.body.pic = undefined
   if (!req.body.city) req.body.city = undefined
   if (!req.body.state) req.body.state = undefined
-
-  console.log(req.body, 'before create')
 
   db.Place.create(req.body)
     .then(() => res.redirect('/places'))
@@ -34,9 +31,12 @@ router.get('/new', (req, res) => {
 
 // SHOW
 router.get('/:id', (req, res) => {
-  (places[req.params.id])
-    ? res.render('places/show', { place: places[req.params.id], id: req.params.id })
-    : res.status(404).render('Error404')
+  db.Place.findById(req.params.id)
+    .then(place => res.render('places/show', { place }))
+    .catch(err => {
+      console.log(err)
+      res.status(404).render('error404')
+    })
 })
 
 // DELETE

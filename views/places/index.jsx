@@ -11,7 +11,7 @@ function Index(props) {
                         return (
                             <div key={index} className="col-sm-6">
                                 <h2>
-                                    <a href={`/places/${index}`}>{place.name}</a>
+                                    <a href={`/places/${place.id}`}>{place.name}</a>
                                 </h2>
                                 <p className='text-center'>{place.cuisines}</p>
                                 {(place.pic !== '/images/default-restaurant.png')
