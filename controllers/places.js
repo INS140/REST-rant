@@ -12,9 +12,7 @@ router.get('/', (req, res) => {
 
 // CREATE
 router.post('/', (req, res) => {
-  if (!req.body.pic) req.body.pic = undefined
-  if (!req.body.city) req.body.city = undefined
-  if (!req.body.state) req.body.state = undefined
+  assignUndefined(req.body)
 
   db.Place.create(req.body)
     .then(() => res.redirect('/places'))
@@ -47,19 +45,11 @@ router.delete('/:id', (req, res) => {
       console.log(err)
       res.status(404).render('error404')
     })
-  // if (places[req.params.id]) {
-  //   places.splice(req.params.id, 1)
-  //   res.redirect('/places')
-  // } else {
-  //   res.status(404).render('Error404')
-  // }
 })
 
 // PUT
 router.put('/:id', (req, res) => {
-  if (!req.body.pic) req.body.pic = undefined
-  if (!req.body.city) req.body.city = undefined
-  if (!req.body.state) req.body.state = undefined
+  assignUndefined(req.body)
 
   db.Place.updateOne({_id: req.params.id}, {$set: req.body})
     .then(() => res.redirect(`/places/${req.params.id}`))
@@ -78,5 +68,9 @@ router.get('/:id/edit', (req, res) => {
       res.status(404).render('error404')
     })
 })
+
+function assignUndefined(object) {
+  for (const prop in object) if (!object[prop]) {object[prop] = undefined}
+}
 
 module.exports = router

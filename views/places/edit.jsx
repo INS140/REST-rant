@@ -95,11 +95,11 @@ function Edit({ place }) {
                         </div>
                         <div className='form-group'>
                             <label htmlFor='source'>Source Name</label>
-                            <input className='form-control' type='text' name='source' defaultValue={place.srcName} />
+                            <input className='form-control' type='text' name='srcName' defaultValue={place.srcName} />
                         </div>
                         <div className='form-group'>
                             <label htmlFor='attr'>Source URL</label>
-                            <input className='form-control' type='text' name='attr' defaultValue={place.srcUrl} />
+                            <input className='form-control' type='text' name='srcUrl' defaultValue={place.srcUrl} />
                         </div>
                     </fieldset>
                     <input type="submit" className='btn btn-primary' />
