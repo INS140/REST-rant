@@ -91,7 +91,7 @@ function NewForm() {
                             <input className="form-control" id="pic" name="pic" />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="srcName">Sourse Name</label>
+                            <label htmlFor="srcName">Source Name</label>
                             <input className="form-control" id="srcName" name="srcName" />
                         </div>
                         <div className="form-group">

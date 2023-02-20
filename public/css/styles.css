@@ -39,6 +39,8 @@ nav a:hover {
     text-decoration: none;
 }
 
+button, input[type='submit'] { margin-top: 12px; }
+
 .img-container {
     width: fit-content;
     margin: auto;

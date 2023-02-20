@@ -9,7 +9,7 @@ function Home() {
                 <div className='img-container'>
                     <img src='/images/stir-fry.jpg' alt='stir-fry' className='restaurant-img' />
                     <div className='attribution'>
-                        Photo found on <a href='https://www.mccormick.com/recipes/salads-sides/stir-fry-vegetables'>McCormick website</a>
+                        Photo found on <a href='https://www.mccormick.com/recipes/salads-sides/stir-fry-vegetables'>McCormick</a> website
                     </div>
                 </div>
                 <a href="/places">

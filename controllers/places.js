@@ -51,17 +51,28 @@ router.delete('/:id', (req, res) => {
 
 // PUT
 router.put('/:id', (req, res) => {
-  if (!req.body.pic) req.body.pic = '/images/default-restaurant.png'
-  if (!req.body.city) req.body.city = 'Somewhere'
-  if (!req.body.state) req.body.state = 'USA'
+  if (!req.body.pic) req.body.pic = undefined
+  if (!req.body.city) req.body.city = undefined
+  if (!req.body.state) req.body.state = undefined
 
-  places[req.params.id] = req.body
-  res.redirect(`/places/${req.params.id}`)
+  db.Place.updateOne({_id: req.params.id}, {$set: req.body})
+    .then(() => res.redirect(`/places/${req.params.id}`))
+    .catch(err => {
+      console.log(err)
+      res.status(404).render('error404')
+    })
+  // places[req.params.id] = req.body
+  
 })
 
 // EDIT
 router.get('/:id/edit', (req, res) => {
-  res.render('places/edit', { place: places[req.params.id], id: req.params.id })
+  db.Place.findById(req.params.id)
+    .then(place => res.render('places/edit', { place }))
+    .catch(err => {
+      console.log(err)
+      res.status(404).render('error404')
+    })
 })
 
 module.exports = router

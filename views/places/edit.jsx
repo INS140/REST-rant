@@ -1,24 +1,24 @@
 const React = require('react')
 const Def = require('../default')
 
-function Edit({ place, id }) {
+function Edit({ place }) {
     return (
         <Def>
             <main>
                 <h2>Edit Restaurant</h2>
-                <form action={`/places/${id}?_method=PUT`} method='POST'>
+                <form action={`/places/${place.id}?_method=PUT`} method='POST'>
                     <fieldset>
                         <legend>Restaurant Info</legend>
                         <div className="form-group">
-                            <label htmlFor='name'>Name </label>
+                            <label htmlFor='name'>Name</label>
                             <input className="form-control" type='text' name='name' defaultValue={place.name} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor='city'>City </label>
+                            <label htmlFor='city'>City</label>
                             <input className="form-control" type='text' name='city' defaultValue={place.city} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor='state'>State </label>
+                            <label htmlFor='state'>State</label>
                             <select className="form-control" id="state" name="state" defaultValue={place.state}>
                                 <option value="">---</option>
                                 <option value="AL">Alabama</option>
@@ -79,26 +79,30 @@ function Edit({ place, id }) {
                             </select>
                         </div>
                         <div className='form-group'>
-                            <label htmlFor='cuisines'>Cuisines </label>
+                            <label htmlFor='cuisines'>Cuisines</label>
                             <input className='form-control' type='text' name='cuisines' defaultValue={place.cuisines} />
+                        </div>
+                        <div className='form-group'>
+                            <label htmlFor='founded'>Founded</label>
+                            <input className='form-control' type='text' name='founded' defaultValue={place.founded} />
                         </div>
                     </fieldset>
                     <fieldset>
                         <legend>Restaurant Image</legend>
                         <div className='form-group'>
-                            <label htmlFor='pic'>Image URL </label>
+                            <label htmlFor='pic'>Picture URL</label>
                             <input className='form-control' type='text' name='pic' defaultValue={place.pic} />
                         </div>
                         <div className='form-group'>
-                            <label htmlFor='source'>Attribution Source </label>
-                            <input className='form-control' type='text' name='source' defaultValue={place.source} />
+                            <label htmlFor='source'>Source Name</label>
+                            <input className='form-control' type='text' name='source' defaultValue={place.srcName} />
                         </div>
                         <div className='form-group'>
-                            <label htmlFor='attr'>Attribution URL Source </label>
-                            <input className='form-control' type='text' name='attr' defaultValue={place.attr} />
+                            <label htmlFor='attr'>Source URL</label>
+                            <input className='form-control' type='text' name='attr' defaultValue={place.srcUrl} />
                         </div>
                     </fieldset>
-                    <input type="submit" />
+                    <input type="submit" className='btn btn-primary' />
                 </form>
             </main>
         </Def>
