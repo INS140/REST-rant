@@ -23,6 +23,7 @@ function Show ({ place }) {
                 <h2>Description</h2>
                 <p>Located in {place.city}, {place.state}</p>
                 <p>Specialties: {place.cuisines}</p>
+                {place.founded && <p>Founded: {place.founded}</p>}
             </div>
             <div>
                 <h2>Comments</h2>

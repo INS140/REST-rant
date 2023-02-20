@@ -41,12 +41,18 @@ router.get('/:id', (req, res) => {
 
 // DELETE
 router.delete('/:id', (req, res) => {
-  if (places[req.params.id]) {
-    places.splice(req.params.id, 1)
-    res.redirect('/places')
-  } else {
-    res.status(404).render('Error404')
-  }
+  db.Place.deleteOne({_id: req.params.id})
+    .then(() => res.redirect('/places'))
+    .catch(err => {
+      console.log(err)
+      res.status(404).render('error404')
+    })
+  // if (places[req.params.id]) {
+  //   places.splice(req.params.id, 1)
+  //   res.redirect('/places')
+  // } else {
+  //   res.status(404).render('Error404')
+  // }
 })
 
 // PUT
@@ -61,8 +67,6 @@ router.put('/:id', (req, res) => {
       console.log(err)
       res.status(404).render('error404')
     })
-  // places[req.params.id] = req.body
-  
 })
 
 // EDIT
