@@ -15,6 +15,8 @@ function Show ({ place }) {
                 </div>
                 : <img className="restaurant-img" src={place.pic} alt={place.name} />
             }
+            <h3>{place.showEstablished()}</h3>
+            <hr />
             <div>
                 <h2>Rating</h2>
                 <p>no ratings yet ...</p>
