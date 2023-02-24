@@ -12,7 +12,8 @@ const placeSchema = new mongoose.Schema({
   cuisines: {type: String, required: true},
   pic: {type: String, default: '/images/default-restaurant.png'},
   srcName: String,
-  srcUrl: String
+  srcUrl: String,
+  comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 })
 
 placeSchema.methods.showEstablished = function () {

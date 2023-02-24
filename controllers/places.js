@@ -36,6 +36,7 @@ router.get('/new', (req, res) => {
 // SHOW
 router.get('/:id', (req, res) => {
   db.Place.findById(req.params.id)
+    .populate('comments')
     .then(place => res.render('places/show', { place }))
     .catch(err => {
       console.log(err)
@@ -71,6 +72,27 @@ router.get('/:id/edit', (req, res) => {
     .then(place => res.render('places/edit', { place }))
     .catch(err => {
       console.log(err)
+      res.status(404).render('error404')
+    })
+})
+
+// POST COMMENT
+router.post('/:id/comment', (req, res) => {
+  console.log(req.body)
+  req.body.rant = req.body.rant ? true : false
+  db.Place.findById(req.params.id)
+    .then(place => {
+      db.Comment.create(req.body)
+        .then(comment => {
+          place.comments.push(comment.id)
+          place.save()
+            .then(res.redirect(`/places/${req.params.id}`))
+        })
+        .catch(err => {
+          res.status(404).render('error404')
+        })
+    })
+    .catch(err => {
       res.status(404).render('error404')
     })
 })

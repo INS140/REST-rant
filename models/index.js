@@ -8,3 +8,4 @@ mongoose.connect(process.env.MONGO_URI, {
 }, () => console.log('DATABASE CONNECTED'))
 
 module.exports.Place = require('./places')
+module.exports.Comment = require('./comment')
