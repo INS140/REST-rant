@@ -1,9 +1,13 @@
 const React = require('react')
 const Def = require('../default')
+const Comments = require('./comments')
+const CommentForm = require('./commentForm')
 
 function Show ({ place }) {
 
     // These React Hooks are not working as intended, I am looking into SSR React to see how I can fix these issues
+
+    // UPDATE: Servers produce 'static' pages, so React components do not rerender ...
 
     // const [addComment, setAddComment] = React.useState(false)
 
@@ -16,102 +20,6 @@ function Show ({ place }) {
     let addComment = false
 
     const updateView = () => {addComment = !addComment}
-
-    function CommentForm() {
-        // const [inputs, setInputs] = React.useState({
-        //     author: '',
-        //     stars: 0.5,
-        //     content: '',
-        //     rant: false
-        // })
-    
-        // React.useEffect(() => {
-        //     console.log('RERENDER')
-        // }, [inputs])
-    
-        // function handleInputChange(event) {
-        //     const { value, name } = event.target
-        //     setInputs(prevInputs => ({...prevInputs, [name]: value}))
-        // }
-    
-        // function handleCheckedChange(event) {
-        //     const { checked, name } = event.target
-        //     setInputs(prevInputs => ({...prevInputs, [name]: checked}))
-        // }
-    
-        return (
-            <form method='POST' action={`/places/${place.id}/comment`} className='comment-form'>
-                <legend className='comment-legend'><h4>Add A Comment</h4></legend>
-                <div className='comment-auth'>
-                    <label htmlFor='author'>Author: </label>
-                    <input
-                        type='text'
-                        name='author'
-                        // value={inputs.author}
-                        // onChange={handleInputChange}
-                    />
-                </div>
-                <div className='comment-stars'>
-                    <label htmlFor="stars">Rating: </label>
-                    <input
-                        type="number"
-                        name='stars'
-                        step='0.5'
-                        min='0.5'
-                        max='5'
-                        defaultValue='0.5'
-                        // value={inputs.stars}
-                        // onChange={handleInputChange}
-                    />
-                </div>
-                <div className='comment-rant'>
-                    <label htmlFor="rant">Rant: </label>
-                    <input
-                        type="checkbox"
-                        name='rant'
-                        value='rant'
-                        // checked={inputs.rant}
-                        // onChange={handleCheckedChange}
-                    />
-                </div>
-                <div className='comment-content'>
-                    <label htmlFor="content">Content: </label>
-                    <textarea
-                        name="content"
-                        rows='5'
-                        // value={inputs.content}
-                        // onChange={handleInputChange}
-                    ></textarea>
-                </div>
-                <div className='comment-submit'>
-                    <button type='submit'>Comment</button>
-                </div>
-            </form>
-        )
-    }
-
-    function Comments() {
-        return (
-            <div className='comments-container'>
-                {
-                    place.comments.map(comment => {
-                        return (
-                            <div key={comment.id} className="border w-100 m-1">
-                                {
-                                    comment.rant
-                                        ? <h2 className="rant">Rant! ☠</h2>
-                                        : <h2 className='rave'>Rave! ☺</h2>
-                                }
-                                <h4>{comment.content}</h4>
-                                <h3><stong>- {comment.author}</stong></h3>
-                                <h4>Rating: {comment.stars}</h4>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-        )
-    }
 
     return (
         <Def>
@@ -143,7 +51,7 @@ function Show ({ place }) {
                 <h2>Comments</h2>
                 {
                     place.comments.length
-                        ? <Comments />
+                        ? <Comments place={place} />
                         : <h3 className="inactive">No comments yet!</h3>
                 }
                 {/* {
@@ -151,7 +59,7 @@ function Show ({ place }) {
                         ? <CommentForm />
                         : <button id="add" onClick={updateView}>Comment</button>
                 } */}
-                <CommentForm />
+                <CommentForm place={place} />
             </div>
             <a href={`/places/${place.id}/edit`} className="btn btn-warning">Edit</a>
             <form method="POST" action={`/places/${place.id}?_method=DELETE`}>
