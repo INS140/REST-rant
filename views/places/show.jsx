@@ -17,9 +17,10 @@ function Show ({ place }) {
     //     setAddComment(!addComment)
     // }
 
-    let addComment = false
-
-    const updateView = () => {addComment = !addComment}
+    const sumStars = place.comments.length
+        ? place.comments.reduce((sum, comment) => sum + comment.stars, 0)
+        : null
+    const stars = !sumStars ? null : sumStars / place.comments.length
 
     return (
         <Def>
@@ -39,7 +40,11 @@ function Show ({ place }) {
             <hr />
             <div>
                 <h2>Rating</h2>
-                <p>no ratings yet ...</p>
+                {
+                    !stars
+                        ? <p>no ratings yet ...</p>
+                        : <h4 className='rating'>{stars.toFixed(1)}⭐</h4>
+                }
             </div>
             <div>
                 <h2>Description</h2>
@@ -52,7 +57,7 @@ function Show ({ place }) {
                 {
                     place.comments.length
                         ? <Comments place={place} />
-                        : <h3 className="inactive">No comments yet!</h3>
+                        : <p className="inactive">No comments yet!</p>
                 }
                 {/* {
                     addComment
