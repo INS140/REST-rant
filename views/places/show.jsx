@@ -2,6 +2,7 @@ const React = require('react')
 const Def = require('../default')
 const Comments = require('./comments')
 const CommentForm = require('./commentForm')
+const Rating = require('./rating')
 
 function Show ({ place }) {
 
@@ -43,7 +44,7 @@ function Show ({ place }) {
                 {
                     !stars
                         ? <p>no ratings yet ...</p>
-                        : <h4 className='rating'>{stars.toFixed(1)}⭐</h4>
+                        : <Rating numStars={stars.toFixed(1)}/>
                 }
             </div>
             <div>

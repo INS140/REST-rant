@@ -46,6 +46,8 @@ nav a:hover {
 
 button, input[type='submit'] { margin-top: 12px; }
 
+/* Image */
+
 .img-container {
     width: fit-content;
     margin: auto;
@@ -61,6 +63,37 @@ button, input[type='submit'] { margin-top: 12px; }
 }
 
 .restaurant-img { max-width: 100%; }
+
+/* Rating */
+
+.rating-container {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 6px black;
+    box-sizing: border-box;
+}
+
+.rating { margin: 0; }
+
+.star-container { position: relative; }
+
+.stars {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.star-cover {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    background: white;
+}
+
+/* Comment */
 
 .comments-container {
     display: flex;
