@@ -6,7 +6,7 @@ function Comments({ place }) {
             {
                 place.comments.map(comment => {
                     return (
-                        <div key={comment.id} className="border w-100 m-1">
+                        <div key={comment.id} className="border w-100 m-1 pb-1">
                             {
                                 comment.rant
                                     ? <h2 className="rant">Rant! <span className='icon'>☠</span></h2>
@@ -15,6 +15,9 @@ function Comments({ place }) {
                             <h4>{comment.content}</h4>
                             <h3><stong>- {comment.author}</stong></h3>
                             <h4>Rating: {comment.stars}</h4>
+                            <form action={`/places/${place.id}/comment/${comment.id}?_method=DELETE`} method='POST'>
+                                <button type='submit' className='btn btn-danger'>DELETE</button>
+                            </form>
                         </div>
                     )
                 })

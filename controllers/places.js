@@ -33,39 +33,6 @@ router.get('/new', (req, res) => {
   res.render('places/new')
 })
 
-// SHOW
-router.get('/:id', (req, res) => {
-  db.Place.findById(req.params.id)
-    .populate('comments')
-    .then(place => res.render('places/show', { place }))
-    .catch(err => {
-      console.log(err)
-      res.status(404).render('error404')
-    })
-})
-
-// DELETE
-router.delete('/:id', (req, res) => {
-  db.Place.deleteOne({_id: req.params.id})
-    .then(() => res.redirect('/places'))
-    .catch(err => {
-      console.log(err)
-      res.status(404).render('error404')
-    })
-})
-
-// PUT
-router.put('/:id', (req, res) => {
-  assignUndefined(req.body)
-
-  db.Place.updateOne({_id: req.params.id}, {$set: req.body})
-    .then(() => res.redirect(`/places/${req.params.id}`))
-    .catch(err => {
-      console.log(err)
-      res.status(404).render('error404')
-    })
-})
-
 // EDIT
 router.get('/:id/edit', (req, res) => {
   db.Place.findById(req.params.id)
@@ -78,7 +45,6 @@ router.get('/:id/edit', (req, res) => {
 
 // POST COMMENT
 router.post('/:id/comment', (req, res) => {
-  console.log(req.body)
   req.body.rant = req.body.rant ? true : false
   db.Place.findById(req.params.id)
     .then(place => {
@@ -93,6 +59,50 @@ router.post('/:id/comment', (req, res) => {
         })
     })
     .catch(err => {
+      res.status(404).render('error404')
+    })
+})
+
+// DELETE COMMENT
+
+router.delete('/:id/comment/:commentId', (req, res) => {
+  db.Comment.findByIdAndDelete(req.params.commentId)
+    .then(res.redirect(`/places/${req.params.id}`))
+    .catch(err => {
+      console.log(err)
+      res.status(404).render('error404')
+    })
+})
+
+// SHOW
+router.get('/:id', (req, res) => {
+  db.Place.findById(req.params.id)
+    .populate('comments')
+    .then(place => res.render('places/show', { place }))
+    .catch(err => {
+      console.log(err)
+      res.status(404).render('error404')
+    })
+})
+
+// DELETE
+router.delete('/:id', (req, res) => {
+  db.Place.findByIdAndDelete(req.params.id)
+    .then(() => res.redirect('/places'))
+    .catch(err => {
+      console.log(err)
+      res.status(404).render('error404')
+    })
+})
+
+// PUT
+router.put('/:id', (req, res) => {
+  assignUndefined(req.body)
+
+  db.Place.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => res.redirect(`/places/${req.params.id}`))
+    .catch(err => {
+      console.log(err)
       res.status(404).render('error404')
     })
 })
